@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title 'Wicked Needle-News' %}
+
+{% block body %}
+    
+    <article class="news-card rounded">
+        <h2 class="pl-2">{{ news.title }}</h2>
+        <h5 class="mb-4 pl-3 text-muted">{{ news.createdAt|ago }}</h5>
+        <p class="pl-2">{{ news.content }}</p>
+    </article>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="text-center mb-5">
+            <a href="{{ path('news_update', { id: news.id }) }}" class="btn btn-light">Modifier</a>
+            <a href="#" onclick="event.preventDefault(); confirm('Etes-vous sûr ?') && document.getElementById('form').submit();"><button class="btn btn-danger">Supprimer</button></a>
+        </div>
+
+        <form id="form" action="{{ path('news_delete', {id: news.id}) }}" method="post" style="display: none;">
+            <input type="hidden" name="token" value="{{ csrf_token('news_delete' ~ news.id) }}">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Supprimer">
+        </form>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,13 @@
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+$font: 'Bangers', cursive;
+
+.news-card {
+    background: #d1d0d0c0;
+    box-shadow: 10px 5px 5px #00000086;
+    margin-bottom: 3.625rem;
+}
+#news-h1 {
+    margin-top: 3.625rem;
+    margin-bottom: 3.625rem;
+}

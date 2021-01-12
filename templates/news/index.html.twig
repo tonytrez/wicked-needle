@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+{% block title 'Wicked Needle - News' %}
+
+{% block body %}
+    <h1 class="mt-10 text-center" id="news-h1">News</h1>
+    {% for new in news %}
+        <article class="news-card rounded">
+            <a class="text-decoration-none text-dark" href="{{ path('news_show', {id: new.id}) }}"><h2 class="pl-2">{{ new.title }}</h2></a>
+            <h5 class="mb-4 pl-3 text-muted">{{ new.createdAt|ago }}</h5>
+            <p class="pl-2">{{ new.content|u.truncate(100, '...') }}
+                {% if new.content|length > 100 %}
+                    <a href="{{ path('news_show', { 'id': new.id }) }}">Lire la suite...</a>
+                {% endif %}
+            </p>
+        </article>
+    {% endfor %}
+{% endblock %}

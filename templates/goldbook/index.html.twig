@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+{% block title 'Wicked Needle - Livre d\'Or' %}
+
+{% block body %}
+    <h1 class="mt-10 text-center" id="news-h1">Livre d'Or</h1>
+    <div class="linkcontainer">
+        <a class="btn btn-primary goldbook" href="{{ path('goldbook_create') }}">Signer le livre d'or</a> <br>
+    </div>
+    {% for message in goldbook %}
+        <article class="news-card rounded">
+            <a class="text-decoration-none text-dark" href="{{ path('goldbook_show', {id: message.id}) }}"><h2 class="pl-2">{{ message.title }}</h2></a>
+            <h5 class="mb-4 pl-3 text-muted">{{ message.createdAt|ago }} par: {{ message.name }}</h5>
+            <p class="pl-2">{{ message.content|u.truncate(100, '...') }}
+                {% if message.content|length > 100 %}
+                    <a href="{{ path('goldbook_show', { 'id': message.id }) }}">Lire la suite &rArr;</a>
+                {% endif %}
+            </p>
+        </article>
+    {% endfor %}
+{% endblock %}

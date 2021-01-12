@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Bienvenue Admin</h1>
+    <div class="container">
+        <a class="link" href="{{ path('addImages') }}"><button class="admin-btn btn btn-dark btn-lg"> Gerer le portfolio</button></a> <br>
+        <a class="link" href="{{ path('news_create') }}"><button class="admin-btn btn btn-dark btn-lg">Gerer les News</button></a> <br>
+        <a class="link" href="#"><button class="admin-btn btn btn-dark btn-lg">Gérer le livre d'or</button></a>
+{% endblock %}

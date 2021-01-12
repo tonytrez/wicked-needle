@@ -1,0 +1,115 @@
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+$font: 'Bangers', cursive;
+
+h1,
+h2,
+.nav-item,
+.navbar-brand {
+    font-family: $font;
+}
+body {
+    background: linear-gradient(#808080be, #808080b6), url('../images/tatoo.jpg') center repeat fixed;
+    height: 100%;
+    margin-top: .625rem;
+}
+.navbar-link {
+    margin-left: .9375rem;
+    font-size: 1.375rem;
+    margin-bottom: 1.25rem;
+}
+.pres {
+    background-color: #ffffffad;
+    box-shadow: 10px 5px 5px #00000086;
+    width: 100%;
+}
+.container {
+    height: 100%;
+    margin-bottom: 6.25rem;
+}
+label {
+    font-weight: bold;
+    font-family: $font;
+    font-size: 1.25rem;
+}
+.photo {
+    margin-bottom: .9375rem;
+    margin-right: .9375rem;
+    box-shadow: 10px 10px 5px #000000b0;
+    border-radius: 20% ;
+    &:hover {
+        transform: scale(1.5, 1.5) ;
+        transition: transform 0.6s;
+    }
+}
+.logout {
+    font-size: 1.5625rem;
+    font-family: $font;
+}
+.col-form-label {
+    font-family: $font;
+    font-size: 1.25rem !important;
+}
+.btn {
+    font-family: $font;
+    &-danger {
+        background-color: #b61717 !important;
+        &:hover {
+            background-color: #965454 !important;
+        }
+    }
+    &-light {
+        background-color: #c7c4c4 !important;
+        &:hover {
+            background-color: #9c9c9c !important;
+        }
+    }
+}
+th {
+    padding-bottom: 1.875rem;
+}
+.h1 {
+    text-decoration: underline;
+}
+.h5{
+    font-family: $font;
+}
+.map {
+    width: 100%;
+}
+.number {
+    font-weight: 600;
+}
+.linkcontainer {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.goldbook {
+    margin-bottom: 0.625rem ;
+}
+
+@media screen and (min-width: 1200px){
+    .navbar {
+    background-image: url('../images/navbar2.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 10.8125rem;
+    margin-left: 6.25rem;
+}
+.navbar-brand {
+    margin-left: 9.6875rem;
+    font-size: 1.5625rem;
+    margin-bottom: 1.25rem;
+}
+@media screen and (min-width: 760px) {
+    .tel {
+        padding: .75rem 7.25rem !important; 
+    }
+    .number {
+        padding: 0 7.375rem !important;
+    }
+}
+}
+
+

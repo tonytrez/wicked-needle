@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+        {% if app.user is not null %}
+            <div class="text-center mb-5">
+                <a href="{{ path('editImage', { id: image.id }) }}" class="btn btn-light">Modifier</a>
+                <a href="#" onclick="event.preventDefault(); confirm('Etes-vous sûr ?') && document.getElementById('form').submit();"><button class="btn btn-danger">Supprimer</button></a>
+            </div>
+
+            <form id="form" action="{{ path('deleteImage', {id: image.id}) }}" method="post" style="display: none;">
+                <input type="hidden" name="token" value="{{ csrf_token('image_delete' ~ image.id) }}">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" value="Supprimer">
+            </form>
+        {% endif %}
+        <div class="container">
+            <img class="mx-auto d-block" src="{{ vich_uploader_asset(image)}}" alt="{{ 'tattoo'}}" />
+        </div>
+        
+        
+{% endblock %}
