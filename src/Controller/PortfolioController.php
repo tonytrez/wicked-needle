@@ -88,7 +88,7 @@ class PortfolioController extends AbstractController
             $entityManagerInterface->flush();
 
             $this->addFlash('success', 'Photo modifiée avec succès');
-            return $this->redirectToRoute('portfolio_' . $image->getCategory());
+            return $this->redirectToRoute('portfolioCategory', ['category' => $image->getCategory()]);
         }
         return $this->render('admin/portfolio/edit.html.twig', [
             'images' => $image,
