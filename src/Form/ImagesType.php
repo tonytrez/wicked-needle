@@ -15,16 +15,15 @@ class ImagesType extends AbstractType
         $builder->add('imageFile', VichImageType::class, [
                         'allow_delete' => false,
                         'download_uri' => false,
-                        'imagine_pattern' => 'thumbnail_small',
                         'label' => 'Choisir une Image',
                         'required' => false
                 ])
                 ->add('category', ChoiceType::class, [
                     'choices' => [
-                        'Couleur' => 'color',
-                        'Noir et Blanc' => 'blackandwhite',
-                        'Réalisme' => 'realism',
-                        'Calligraphie' => 'cali'
+                        'Couleur' => 'couleur',
+                        'Noir et Blanc' => 'noir-et-blanc',
+                        'Réalisme' => 'realisme',
+                        'Calligraphie' => 'calligraphie'
                     ],
                     'label' => 'Catégorie'
                 ])

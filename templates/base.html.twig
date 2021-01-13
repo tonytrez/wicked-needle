@@ -33,10 +33,10 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link {% if 'portfolio' in app.request.attributes.get('_route') %} {{ 'active' }} {% endif %}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tattoos</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ path('portfolio_color') }}">Couleur</a>
-                                <a class="dropdown-item" href="{{ path('portfolio_blackandwhite') }}">Noir & Blanc</a>
-                                <a class="dropdown-item" href="{{ path('portfolio_realism') }}">Réalisme</a>
-                                <a class="dropdown-item" href="{{ path('portfolio_cali') }}">Calligraphie</a>
+                                <a class="dropdown-item" href="{{ path('portfolioCategory', {category: 'couleur'}) }}">Couleur</a>
+                                <a class="dropdown-item" href="{{ path('portfolioCategory', {category: 'noir-et-blanc'}) }}">Noir & Blanc</a>
+                                <a class="dropdown-item" href="{{ path('portfolioCategory', {category: 'realisme'}) }}">Réalisme</a>
+                                <a class="dropdown-item" href="{{ path('portfolioCategory', {category: 'calligraphie'}) }}">Calligraphie</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -70,7 +70,7 @@
             {% block body %}{% endblock %}
         </main>
         <footer class="footer mt-auto text-center fixed-bottom py-1 bg-secondary">
-                <span class="text-light">&copy; 2020 &middot; Réalisé par Ryujin13</span> <br>
+                <span class="text-light">&copy; {{ "now"|date("Y") }} &middot; Réalisé par Anthony Ammar</span> <br>
                 <a href="{{ path('app_login') }}" class="text-center text-decoration-none text-light">Accès Admin</a>
         </footer>
         {% block javascripts %}
