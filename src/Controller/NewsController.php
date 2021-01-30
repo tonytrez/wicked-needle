@@ -6,6 +6,7 @@ use App\Entity\News;
 use App\Form\NewsType;
 use App\Repository\NewsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,9 +15,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class NewsController extends AbstractController
 {
     /**
-     * @Route("/news",name="news_index")
+     * @Route("/news", name="news_index", methods="GET")
+     * @param NewsRepository $newsRepository
+     * @return Response
      */
-    public function Index(NewsRepository $newsRepository)
+    public function Index(NewsRepository $newsRepository): Response
     {
         return $this->render('news/index.html.twig', [
             'news' => $newsRepository->findBy( [], ['createdAt' => 'DESC'])
@@ -24,17 +27,26 @@ class NewsController extends AbstractController
     }
 
     /**
-     * @Route("/news/{id}/show",name="news_show")
+     * @Route("/news/{id}/show", name="news_show", methods="GET")
+     * @param News $news
+     * @return Response
      */
-    public function show(News $news)
+    public function show(News $news = null): Response
     {
+        if($news === null)
+        {
+            throw $this->createNotFoundException("Ooops ! -_-' Cette page n'existe pas");
+        }
         return $this->render('news/show.html.twig',[
             'news' => $news
         ]);
     }
 
     /**
-     * @Route("/admin/news/create", name="news_create")
+     * @Route("/admin/news/create", name="news_create", methods="POST")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManagerInterface
+     * @return Response
      */
     public function createNews(Request $request, EntityManagerInterface $entityManagerInterface) : Response
     {
@@ -57,10 +69,18 @@ class NewsController extends AbstractController
     }
 
     /**
-     * @Route("/admin/news/{id}/edit",name="news_update")
+     * @Route("/admin/news/{id}/edit", name="news_update", methods={"GET", "PUT")
+     * @param News $news
+     * @param Request $request
+     * @param EntityManagerInterface $entityManagerInterface
+     * @return Response
      */
-    public function Update(News $news, Request $request, EntityManagerInterface $entityManagerInterface) : Response 
+    public function Update(News $news = null, Request $request, EntityManagerInterface $entityManagerInterface) : Response
     {
+        if($news === null)
+        {
+            throw $this->createNotFoundException("Ooops ! -_-' Cette page n'existe pas");
+        }
 
         $form = $this->createForm(NewsType::class, $news, [
             'method' => 'PUT'
@@ -82,10 +102,18 @@ class NewsController extends AbstractController
     }
 
     /**
-     * @Route("/admin/news/{id}/delete", name="news_delete")
+     * @Route("/admin/news/{id}/delete", name="news_delete", methods="DELETE")
+     * @param News|null $news
+     * @param Request $request
+     * @param EntityManagerInterface $entityManagerInterface
+     * @return RedirectResponse
      */
-    public function delete(News $news, Request $request, EntityManagerInterface $entityManagerInterface)
+    public function delete(News $news = null, Request $request, EntityManagerInterface $entityManagerInterface): RedirectResponse
     {
+        if($news === null)
+        {
+            throw $this->createNotFoundException("Ooops ! -_-' Cette page n'existe pas");
+        }
         if ($this->isCsrfTokenValid('news_delete' . $news->getId(), $request->request->get('token'))) {
             $entityManagerInterface->remove($news);
             $entityManagerInterface->flush();

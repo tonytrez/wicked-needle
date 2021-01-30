@@ -14,20 +14,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class GoldBookController extends AbstractController
 {
     /**
-     * @Route("/goldbook", name="goldbook_index")
+     * @Route("/goldbook", name="goldbook_index", methods="GET")
+     * @param GoldbookRepository $goldbookRepository
+     * @return Response
      */
-    public function index(GoldbookRepository $goldbookRepository)
+    public function index(GoldbookRepository $goldbookRepository): Response
     {
         return $this->render('goldbook/index.html.twig', [
             'goldbook' => $goldbookRepository->findBy( [], ['createdAt' => 'DESC'])
         ]);
     }
-    
+
     /**
-     * @Route("/goldbook/{id}/show",name="goldbook_show")
+     * @Route("/goldbook/{id}/show",name="goldbook_show", methods="GET")
+     * @param Goldbook $goldbook
+     * @return Response
      */
-    public function show(Goldbook $goldbook)
+    public function show(Goldbook $goldbook = null): Response
     {
+        if ($goldbook === null)
+        {
+            throw $this->createNotFoundException("Ooops ! -_-' Cette page n'existe pas");
+        }
         return $this->render('goldbook/show.html.twig',[
             'goldbook' => $goldbook
         ]);
@@ -35,6 +43,9 @@ class GoldBookController extends AbstractController
 
     /**
      * @Route("goldbook/create", name="goldbook_create")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManagerInterface
+     * @return Response
      */
     public function create(Request $request, EntityManagerInterface $entityManagerInterface) : Response
     {
@@ -58,8 +69,12 @@ class GoldBookController extends AbstractController
 
     /**
      * @Route("/admin/goldbook/{id}/delete", name="goldbook_delete")
+     * @param Goldbook $goldbook
+     * @param Request $request
+     * @param EntityManagerInterface $entityManagerInterface
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function delete(Goldbook $goldbook, Request $request, EntityManagerInterface $entityManagerInterface)
+    public function delete(Goldbook $goldbook, Request $request, EntityManagerInterface $entityManagerInterface): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         if ($this->isCsrfTokenValid('goldbook_delete' . $goldbook->getId(), $request->request->get('token'))) {
             $entityManagerInterface->remove($goldbook);
