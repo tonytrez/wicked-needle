@@ -69,7 +69,7 @@ class NewsController extends AbstractController
     }
 
     /**
-     * @Route("/admin/news/{id}/edit", name="news_update", methods={"GET", "PUT")
+     * @Route("/admin/news/{id}/edit", name="news_update", methods={"GET", "PUT"})
      * @param News $news
      * @param Request $request
      * @param EntityManagerInterface $entityManagerInterface
