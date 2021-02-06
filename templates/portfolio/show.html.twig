@@ -14,7 +14,7 @@
                 <input type="submit" value="Supprimer">
             </form>
         {% endif %}
-        <a href="{{ path('portfolioCategory', {category: image.category}) }}"></a>
+        <a href="{{ path('portfolioCategory', {category: image.category}) }}" class="btn btn-danger">Retour</a>
         <div class="container">
             <img class="mx-auto d-block" src="{{ vich_uploader_asset(image)}}" alt="{{ 'tattoo'}}" />
         </div>
