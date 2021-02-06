@@ -6,7 +6,7 @@
     <div class="row">
         {% for image in images %}
             <article>
-                    <a href="{{ path('portfolioImageShow', {id: image.id}) }}"><img class="photo" src="{{ vich_uploader_asset(image) }}" alt="{{ 'tattoo'}}" /></a>
+                    <a href="{{ path('portfolioImageShow', {id: image.id}) }}"><img class="photo" src="{{ vich_uploader_asset(image) | imagine_filter('my_thumb') }}" alt="{{ 'tattoo'}}" /></a>
                 </article>
         {% endfor %}
     </div>
