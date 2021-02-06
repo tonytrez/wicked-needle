@@ -67,7 +67,7 @@ class PortfolioController extends AbstractController
     /**
      * Edit one image
      * 
-     * @Route("/admin/portfolio/image/{id}/edit",name="editImage", methods="PUT")
+     * @Route("/admin/portfolio/image/{id}/edit",name="editImage", methods={"GET", "PUT"})
      */
     public function editImage(Images $image = null, Request $request, EntityManagerInterface $entityManagerInterface) : Response 
     {
