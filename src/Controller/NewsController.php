@@ -43,7 +43,7 @@ class NewsController extends AbstractController
     }
 
     /**
-     * @Route("/admin/news/create", name="news_create", methods="POST")
+     * @Route("/admin/news/create", name="news_create", methods={"GET", "POST"})
      * @param Request $request
      * @param EntityManagerInterface $entityManagerInterface
      * @return Response
